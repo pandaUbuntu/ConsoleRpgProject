@@ -158,6 +158,7 @@
     <ClInclude Include="Monster.h" />
     <ClInclude Include="NameTrait.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="PriceTrait.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Rogue.h" />
     <ClInclude Include="Tank.h" />
