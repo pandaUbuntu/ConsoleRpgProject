@@ -1,10 +1,10 @@
 #pragma once
 #include <vector>
-#include "Entity/Tank.h"
-#include "Entity/Rogue.h"
-#include "Entity/Barbarian.h"
-#include "Service/FunctionHelper.h"
-#include "Entity/Monster.h"
+#include "../Entity/Tank.h"
+#include "../Entity/Rogue.h"
+#include "../Entity/Barbarian.h"
+#include "../Service/FunctionHelper.h"
+#include "../Entity/Monster.h"
 
 using namespace std;
 

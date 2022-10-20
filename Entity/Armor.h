@@ -1,5 +1,5 @@
 #pragma once
-#include "Traits/NameTrait.h"
+#include "../Traits/NameTrait.h"
 
 class Armor : public NameTrait
 {

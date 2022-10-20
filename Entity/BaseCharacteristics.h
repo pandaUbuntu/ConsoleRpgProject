@@ -1,7 +1,7 @@
 #pragma once
-#include "Traits/NameTrait.h"
+#include "../Traits/NameTrait.h"
 
-class Base—haracteristics : public NameTrait
+class BaseCharacteristics : public NameTrait
 {
 protected:
 	int hp = 0;
