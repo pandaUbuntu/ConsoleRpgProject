@@ -1,30 +1,28 @@
 #pragma once
 #include <vector>
-#include "Tank.h"
-#include "Rogue.h"
-#include "Barbarian.h"
-#include "FunctionHelper.h"
-#include "Monster.h"
+#include "Entity/Tank.h"
+#include "Entity/Rogue.h"
+#include "Entity/Barbarian.h"
+#include "Service/FunctionHelper.h"
+#include "Entity/Monster.h"
 
 using namespace std;
 
 class Engine
 {
 private:
-	FunctionHelper* fH = NULL;
 	vector<string> monsterName{"Terrorcat", "Poisonhound", "Gallfoot", "Smoggirl", "Blazesnake"};
 
 	string getRandomName(vector<string> list) {
-		return list[this->fH->getRandomNumber(0, list.size())];
+		return list[FunctionHelper::getRandomNumber(0, FunctionHelper::getArrayLastKey(list.size()))];
 	}
 
 public:
-	Engine(FunctionHelper* fH) {
-		this->fH = fH;
+	Engine() {
 	}
 
 	Monster* generateMonster(int level) {
-		return new Monster(this->getRandomName(this->monsterName), ((80 + fH->getRandomNumber(10, 50)) * level), ((10 + fH->getRandomNumber(1, 5)) * level), level);
+		return new Monster(this->getRandomName(this->monsterName), ((80 + FunctionHelper::getRandomNumber(10, 50)) * level), ((10 + FunctionHelper::getRandomNumber(1, 5)) * level), level);
 	}
 
 	Player* createPlayer(string name, int choosenType) {

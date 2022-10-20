@@ -150,6 +150,7 @@
     <ClCompile Include="ConsoleRpg.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Armor.h" />
     <ClInclude Include="Barbarian.h" />
     <ClInclude Include="BaseСharacteristics.h" />
     <ClInclude Include="Engine.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="resource.h" />
     <ClInclude Include="Rogue.h" />
     <ClInclude Include="Tank.h" />
+    <ClInclude Include="Weapon.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ConsoleRpg.rc" />

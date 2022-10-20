@@ -1,5 +1,5 @@
 #pragma once
-#include "NameTrait.h"
+#include "Traits/NameTrait.h"
 
 class BaseÑharacteristics : public NameTrait
 {
