@@ -1,7 +1,6 @@
 #pragma once
 #include "../Traits/NameTrait.h"
 #include "../Traits/PriceTrait.h"
-#include "../Service/FunctionHelper.h"
 
 class Weapon : public NameTrait, public PriceTrait
 {
@@ -15,5 +14,9 @@ public:
 
 	void setDamage(int damage) { this->damage = damage; }
 	int getDamage() { return this->damage; }
+
+	void showData() {
+		cout << "Name: " << this->name << ". Damage: " << this->damage << ". Price: " << this->price << ". " << endl;
+	}
 };
 

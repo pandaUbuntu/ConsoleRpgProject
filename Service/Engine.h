@@ -12,6 +12,8 @@ class Engine
 {
 private:
 	vector<string> monsterName{"Terrorcat", "Poisonhound", "Gallfoot", "Smoggirl", "Blazesnake"};
+	vector<string> armorName{"Leather Armor", "Steel cuirass", "Mithril mail", "Wooden fullplate", "Magic robe"};
+	vector<string> weaponName{"Knife", "Sword", "Spear", "Halberd", "Bow"};
 
 	string getRandomName(vector<string> list) {
 		return list[FunctionHelper::getRandomNumber(0, FunctionHelper::getArrayLastKey(list.size()))];
@@ -39,6 +41,14 @@ public:
 		}
 
 		return player;
+	}
+
+	Weapon* generateWeapon() {
+		return new Weapon(this->getRandomName(this->weaponName), FunctionHelper::getRandomNumber(3, 20));
+	}
+
+	Armor* generateArmor() {
+		return new Armor(this->getRandomName(this->armorName), FunctionHelper::getRandomNumber(3, 20));
 	}
 };
 

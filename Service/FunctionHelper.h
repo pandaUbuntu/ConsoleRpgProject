@@ -17,5 +17,13 @@ public:
 	static int getArrayLastKey(int size) {
 		return size - 1;
 	}
+
+	static int enterInt(string message) {
+		int number = 0;
+		cout << message;
+		cin >> number;
+
+		return number;
+	}
 };
 

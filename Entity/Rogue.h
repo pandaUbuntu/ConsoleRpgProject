@@ -10,5 +10,14 @@ public:
 		this->agility = 45;
 		this->endurance = 20;
 	}
+
+	void levelUp() override {
+		this->hpMax += 50;
+		this->hp = this->hpMax;
+
+		this->strenght += 5;
+		this->agility += 10;
+		this->endurance += 5;
+	}
 };
 

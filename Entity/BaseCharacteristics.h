@@ -10,7 +10,7 @@ protected:
 	int energyMax = 0;
 	int level = 1;
 public:
-	BaseÑharacteristics(string name, int hp, int energy) : NameTrait(name) {
+	BaseCharacteristics(string name, int hp, int energy) : NameTrait(name) {
 		this->hp = hp;
 		this->hpMax = hp;
 		this->energy = energy;
@@ -43,6 +43,7 @@ public:
 		return this->energy;
 	}
 
+	void setHpMax(int maxHP) { this->hpMax = maxHP; }
 	int getHpMax() { return this->hpMax; }
 	int getEnergyMax() { return this->energyMax; }
 

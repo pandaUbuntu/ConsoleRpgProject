@@ -1,14 +1,14 @@
 #pragma once
-#include "BaseÑharacteristics.h"
+#include "../Entity/BaseCharacteristics.h"
 
-class Monster : public BaseÑharacteristics
+class Monster : public BaseCharacteristics
 {
 private:
 	int damage = 0;
 	int armor = 0;
 	int rewardExperience = 0;
 public:
-	Monster(string name, int hp, int energy, int level) : BaseÑharacteristics(name, hp, energy) {
+	Monster(string name, int hp, int energy, int level) : BaseCharacteristics(name, hp, energy) {
 		this->damage = level * (2 + (1 + rand() % 10));
 		this->armor = level * (2 + (1 + rand() % 10));
 		this->rewardExperience = level * (50 + rand() % 100);

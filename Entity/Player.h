@@ -1,10 +1,10 @@
 #pragma once
-#include "Entity/BaseÑharacteristics.h"
-#include "Service/FunctionHelper.h"
-#include "Entity/Weapon.h"
-#include "Entity/Armor.h"
+#include "../Entity/BaseCharacteristics.h"
+#include "../Service/FunctionHelper.h"
+#include "../Entity/Weapon.h"
+#include "../Entity/Armor.h"
 
-class Player : public BaseÑharacteristics
+class Player : public BaseCharacteristics
 {
 protected:
 	int strenght = 0;
@@ -12,12 +12,13 @@ protected:
 	int endurance = 0;
 	int exp = 0;
 	int levelCup = 1000;
+	int money = 0;
 	string className = "";
 	Weapon* weapon = NULL;
 	Armor* armor = NULL;
 
 public:
-	Player(string name, int hp, int energy) : BaseÑharacteristics(name, hp, energy) {}
+	Player(string name, int hp, int energy) : BaseCharacteristics(name, hp, energy) {}
 
 	void setWeapon(Weapon* weapon) { this->weapon = weapon; }
 	Weapon* getWeapon() { return this->weapon; }
@@ -37,11 +38,24 @@ public:
 	int getEndurance() { return this->endurance; }
 	void addEndurance(int endurance) { this->endurance += endurance; }
 
+	void setMoney(int money) { this->money = money; }
+	int getMoney() { return this->money; }
+	void addMoney(int money) { this->money += money; }
+	void reduceMoney(int money) { this->money -= money; }
+	bool checkPossibilityPurchase(int price) {
+		if (this->money >= price) {
+			return true;
+		}
+
+		return false;
+	}
+
 	void addExp(int exp) {
 		if (exp + this->exp >= this->levelCup) {
 			this->exp = (exp + this->exp) - this->levelCup;
-
+			
 			this->level++;
+			this->levelUp();
 			this->levelCup = 1000 * this->level;
 		}
 		else {
@@ -74,5 +88,7 @@ public:
 
 		return defence;
 	}
+
+	virtual void levelUp() = 0;
 };
 
