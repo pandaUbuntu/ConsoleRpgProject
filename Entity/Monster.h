@@ -7,6 +7,7 @@ private:
 	int damage = 0;
 	int armor = 0;
 	int rewardExperience = 0;
+	int money = 0;
 public:
 	Monster(string name, int hp, int energy, int level) : BaseCharacteristics(name, hp, energy) {
 		this->damage = level * (2 + (1 + rand() % 10));
@@ -23,5 +24,7 @@ public:
 
 	void setRewardExperience(int rewardExperience) { this->rewardExperience = rewardExperience; }
 	int getRewardExperience() { return this->rewardExperience; }
+
+	int getMoney() { return this->money; }
 };
 
