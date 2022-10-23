@@ -14,6 +14,7 @@ private:
 	vector<string> monsterName{"Terrorcat", "Poisonhound", "Gallfoot", "Smoggirl", "Blazesnake"};
 	vector<string> armorName{"Leather Armor", "Steel cuirass", "Mithril mail", "Wooden fullplate", "Magic robe"};
 	vector<string> weaponName{"Knife", "Sword", "Spear", "Halberd", "Bow"};
+	FunctionHelper* fH = NULL;
 
 	string getRandomName(vector<string> list) {
 		return list[FunctionHelper::getRandomNumber(0, FunctionHelper::getArrayLastKey(list.size()))];
@@ -21,6 +22,7 @@ private:
 
 public:
 	Engine() {
+		
 	}
 
 	Monster* generateMonster(int level) {

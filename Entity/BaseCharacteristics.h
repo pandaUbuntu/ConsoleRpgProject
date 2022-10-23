@@ -26,6 +26,14 @@ public:
 		}
 	}
 
+	void damageHp(int countHp) {
+		if (this->hp - countHp > 0) {
+			this->hp = this->hp - countHp;
+		}
+		else {
+			this->hp = 0;
+		}
+	}
 	int getHp() {
 		return this->hp;
 	}

@@ -68,7 +68,7 @@ public:
 	int getDamage() {
 		int damage = (this->strenght / 5) * 3;
 
-		if (this->weapon == NULL) {
+		if (this->weapon != NULL) {
 			damage += this->weapon->getDamage();
 		}
 
@@ -82,7 +82,7 @@ public:
 	int getDefence() {
 		int defence = (this->endurance / 5) * 3;
 
-		if (this->armor == NULL) {
+		if (this->armor != NULL) {
 			defence += this->armor->getDefence();
 		}
 

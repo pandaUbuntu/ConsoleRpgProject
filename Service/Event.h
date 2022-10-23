@@ -52,14 +52,53 @@ private:
 
 		return false;
 	}
-public:
-	Event(Engine* engine) {
-		this->engine = engine;
+
+	void showPersonData(string name, int hp, int hpMax) {
+		cout << "# -------- " << name << " -------- #" << endl;
+
+		
+		string str = "";
+		int size = 10;
+		int countEmpty = ((float)hp / (float)hpMax) * (float)10;
+		for (int i = 0; i < size; i++) {
+			if (i < countEmpty) {
+				str += "#";
+			}
+			else {
+				str += "_";
+			}
+		}
+		cout << "# --- [" << str << "] --- #" << endl;
+		cout << "# ----- " << hp << "/" << hpMax << " ----- #" << endl;
+
+		string footerSeparator = "# ========";
+
+		for (int i = 0; i < 2 + name.length(); i++) {
+			footerSeparator += "-";
+		}
+
+		footerSeparator += "======== #\n";
+
+		cout << footerSeparator;
 	}
 
-	void shop(int type) {
+	void showOneRoundData(string firstName, int firstDamage, string secondName, int secondDamage) {
+		cout << firstName << " - Deal - " << firstDamage << " damage. " << secondName << " - " << secondDamage << " defense point" << endl;
+		int result = firstDamage - secondDamage > 0 ? firstDamage - secondDamage : 0;
+		cout << "Damage caused: " << result << endl;
+	}
+
+public:
+	Event(Engine* engine, Player* player) {
+		this->engine = engine;
+		this->player = player;
+	}
+
+	void shop() {
+		//int type = FunctionHelper::getRandomNumber(1, 2);
+		int type = 1; // test
 		int choice = 0;
-		FunctionHelper::enterInt("Select a product?");
+		cout << "Select a product?" << endl;
 		if (type == 1)
 		{
 			cout << "Armor Shop.\n";
@@ -67,7 +106,7 @@ public:
 			this->showAssortmentArmorList(list);
 			cin >> choice;
 
-			if (this->checkChoice(choice-1, list.size)) {
+			if (this->checkChoice(choice-1, list.size())) {
 				if (this->player->checkPossibilityPurchase(list[choice - 1]->getPrice())) {
 					this->player->reduceMoney(list[choice - 1]->getPrice());
 					this->player->setArmor(list[choice - 1]);
@@ -89,7 +128,7 @@ public:
 
 			cin >> choice;
 
-			if (this->checkChoice(choice - 1, list.size)) {
+			if (this->checkChoice(choice - 1, list.size())) {
 				if (this->player->checkPossibilityPurchase(list[choice - 1]->getPrice())) {
 					this->player->reduceMoney(list[choice - 1]->getPrice());
 					this->player->setWeapon(list[choice - 1]);
@@ -138,5 +177,37 @@ public:
 
 	bool fightWithMonster() {
 		Monster* mob = this->engine->generateMonster(this->player->getLevel());
+
+		this->showPersonData(this->player->getName(), this->player->getHp(), this->player->getHpMax());
+		this->showPersonData(mob->getName(), mob->getHp(), mob->getHpMax());
+
+		while (mob->getHp() > 0 && this->player->getHp() > 0) {
+			this->showOneRoundData(this->player->getName(), this->player->getDamage(), mob->getName(), mob->getArmor());
+			mob->damageHp(this->player->getDamage() - mob->getArmor() > 0 ? this->player->getDamage() - mob->getArmor() : 0);
+
+			this->showOneRoundData(mob->getName(), mob->getDamage(), this->player->getName(), this->player->getDefence());
+			this->player->damageHp(mob->getDamage() - this->player->getDefence() > 0 ? mob->getDamage() - this->player->getDefence() : 0);
+
+			this->showPersonData(this->player->getName(), this->player->getHp(), this->player->getHpMax());
+			this->showPersonData(mob->getName(), mob->getHp(), mob->getHpMax());
+			cout << "******************************************\n";
+		}
+		
+
+		if (mob->getHp() > 0) {
+			cout << "Your Lose! GAME OVER!\n";
+			delete mob;
+
+			return false;
+		}
+		else {
+			cout << "Your wins! " << mob->getName() << " Lose. You got " << mob->getRewardExperience() << " experience points.\n";
+			this->player->addExp(mob->getRewardExperience());
+			this->player->addMoney(mob->getMoney());
+
+			delete mob;
+
+			return true;
+		}
 	}
 };
